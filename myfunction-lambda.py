@@ -26,13 +26,8 @@ def lambda_handler(event, context):
     print(body)
 
     # Save the event data in the result bucket
-    s3 = boto3.client('s3')
-    response1 = s3.put_object(
-      Bucket = 'vas-demo-result-bucket',
-      Key = fn,
-      Body = body)
-
-    print(response1)
+    s3 = boto3.resource('s3')
+    s3.Bucket('vas-demo-result-bucket').put_object(Key=fn, Body=body)
 
     # Create an SNS client.Since our demo needs SMS capability, need to set the region
     sns = boto3.client('sns', region_name='us-east-1')
