@@ -1,4 +1,5 @@
 from __future__ import print_function
+from datetime import datetime
 
 import json
 import boto3
@@ -18,7 +19,20 @@ def lambda_handler(event, context):
     debugmsg = 'Broken rotor signature is {0}'
     print(debugmsg.format(brokenRotorSig))
 
+    fn = datetime.now().strftime('%Y%m%d_%H%M%S_%f') + '_result.json'
+    print(fn)
 
+    body = eventText.encode('utf-8')
+    print(body)
+
+    # Save the event data in the result bucket
+    s3 = boto3.client('s3')
+    response1 = s3.put_object(
+      Bucket = 'vas-demo-result-bucket',
+      Key = fn,
+      Body = body)
+
+    print(response1)
 
     # Create an SNS client.Since our demo needs SMS capability, need to set the region
     sns = boto3.client('sns', region_name='us-east-1')

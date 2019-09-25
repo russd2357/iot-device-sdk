@@ -36,7 +36,7 @@ If you don't have node and npm installed on your machine, you will need to do so
 Once you've got node and npm installed, you need to download the AWS IoT Device SDK for Javascript. Follow these steps for installing the SDK.
 
 1. Make a directory ~/deviceSDK using the command
-	
+
 	mkdir ~/deviceSDK
 
 2. Change the curreht directory to the deviceSDK directory using the command
@@ -57,4 +57,4 @@ Once you've got node and npm installed, you need to download the AWS IoT Device 
 
 At this point, you should be able to run the sample code.
 
-
+  node device-example -k "../certs/f89d719c91-private-key.pem" -c "../certs/f89d719c91-cert.pem" -H ajj0dtxgspdpk-ats.iot.us-east-2.amazonaws.com -p 8883 -T vas-demo-gpg1 --test-mode 1 -a "../certs/root-CA.crt"
